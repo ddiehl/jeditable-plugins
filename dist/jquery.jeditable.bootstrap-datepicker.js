@@ -23,6 +23,14 @@ $.editable.addInputType('datepicker', {
 		return (input);
 	},
 	plugin: function(settings, original) {
-		inicializaData($(this).find('input'));
+		var dateInput = $(this).find('input'));
+		dateInput.datepicker({
+			format : settings.format,
+			viewMode : settings.startViewMode
+		}).on('changeDate', function(ev) {
+			if (ev.viewMode == settings.viewMode) {
+				dateInput.datepicker('hide');	
+			}
+		});
 	}
 }); 
